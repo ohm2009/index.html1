@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 4-Month Anniversary</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e8c7ff, #ffd1e8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: #d60060;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff69b4;
+            transform: rotate(45deg);
+            animation: float 5s infinite ease-in-out;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff69b4;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-800px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+        .gift-box {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background: #ff69b4;
+            margin: 20px auto;
+            cursor: pointer;
+        }
+        .gift-box::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background: #fff;
+            top: 40%;
+            left: 0;
+        }
+        .gift-box::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 100%;
+            background: #fff;
+            left: 40%;
+            top: 0;
+        }
+        .gift-lid {
+            position: absolute;
+            width: 100px;
+            height: 20px;
+            background: #d60060;
+            top: -20px;
+            left: 0;
+            display: none;
+        }
+        .balloons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .balloon {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background: radial-gradient(circle, #ffcccb, #ff69b4);
+            border-radius: 50% 50% 50% 50%;
+            animation: rise 6s infinite;
+        }
+        @keyframes rise {
+            0% {
+                transform: translateY(100%);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy 4-Month Anniversary, แก้ม! 💖</h1>
+        <p>แก้มคือความสุขของเค้า ขอบคุณที่อยู่เคียงข้างเสมอ 🌸</p>
+        <p>รักแก้มที่สุดในโลกเลยยย 🥰</p>
+        <p>"เธอรู้ไหม ตั้งแต่วันที่เค้าได้เจอเธอ ทุกสิ่งในชีวิตเค้าเหมือนได้เปลี่ยนไป
+            เธอทำให้ทุกเช้าเป็นวันที่สดใส และทุกค่ำคืนเต็มไปด้วยความอบอุ่นในใจ
+            แค่ได้ยินเสียงเธอ เค้าก็รู้สึกเหมือนมีพลังที่จะเผชิญกับทุกอย่างในโลกนี้
+            เธอเป็นทั้งเพื่อน คนรัก และแรงบันดาลใจของเค้าในเวลาเดียวกัน
+            ทุกครั้งที่เค้ามองเธอ เค้ารู้สึกว่าตัวเองโชคดีแค่ไหนที่มีเธออยู่ข้างๆ
+            เธอคือความสวยงามที่สุดที่เค้าเคยเจอ ทั้งภายนอกและในใจของเธอ
+            ไม่ว่าอนาคตจะเป็นอย่างไร เค้าก็อยากให้เธอรู้ว่าเค้าจะอยู่ตรงนี้เสมอ
+            รักเธอมาก มากจนไม่รู้จะอธิบายออกมาเป็นคำพูดได้หมด
+            แค่เธออยู่ด้วยกันแบบนี้ ชีวิตเค้าก็ไม่ต้องการอะไรอีกแล้ว
+            ขอบคุณที่เธอเลือกเค้า และขอบคุณที่เธอเป็นเธอ 💖"</p>
+        <div class="gift-box" onclick="openGift()">
+            <div class="gift-lid"></div>
+        </div>
+    </div>
+    <div class="hearts">
+        <!-- JavaScript will generate floating hearts here -->
+    </div>
+    <div class="balloons">
+        <!-- Balloons will be dynamically added here -->
+    </div>
+    <script>
+        const heartContainer = document.querySelector('.hearts');
+        const balloonsContainer = document.querySelector('.balloons');
+        const giftBox = document.querySelector('.gift-box');
+        const giftLid = document.querySelector('.gift-lid');
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+
+            const size = Math.random() * 10 + 10;
+            heart.style.width = `${size}px`;
+            heart.style.height = `${size}px`;
+
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.animationDuration = `${Math.random() * 2 + 3}s`;
+
+            heartContainer.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            balloon.style.left = `${Math.random() * 100}vw`;
+            balloon.style.animationDuration = `${Math.random() * 4 + 4}s`;
+
+            balloonsContainer.appendChild(balloon);
+
+            setTimeout(() => balloon.remove(), 6000);
+        }
+
+        function openGift() {
+            giftLid.style.display = 'block';
+            alert('Surprise! รักแก้มนะ 💖');
+        }
+
+        setInterval(createHeart, 300);
+        setInterval(createBalloon, 500);
+    </script>
+</body>
+</html>
